@@ -5,11 +5,15 @@ import org.junit.jupiter.api.Test
 
 internal class GameOfLifeShould {
 
+    // 110
+    // 1x0
+    // 000
     @Test
     fun `dead cell with three live neighbours will be live`() {
+        val allLiveCells = listOf(Pair(-1, -1), Pair(0, -1), Pair(-1, 0))
         val deadCell = Cell(0, 0, false)
 
-        val nextGeneration = deadCell.nextGeneration(3)
+        val nextGeneration = deadCell.nextGeneration(allLiveCells)
 
         val liveCell = Cell(0, 0, true)
         assertEquals(liveCell, nextGeneration)
