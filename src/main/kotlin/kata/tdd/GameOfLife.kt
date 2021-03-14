@@ -4,19 +4,21 @@ typealias Cell = Pair<Int, Int>
 
 class Board(private vararg val liveCells: Cell) {
 
-    fun nextGeneration(): Board {
-        return Board(*liveCells
+    fun isAlive(cell: Cell): Boolean = cell.isAlive(liveCells)
+
+    fun nextGeneration() =
+        Board(*liveCells
             .flatMap { it.neighborhood }
             .distinct()
-            .filter { consider(isAlive(it), it.neighbors.filter { n -> isAlive(n) }.size) }
-            .toTypedArray()
-        )
-    }
+            .filter { it.willLive(liveCells) }
+            .toTypedArray())
+}
 
-    private fun consider(alive: Boolean, liveNeighbors: Int) =
-        (alive && liveNeighbors == 2) || liveNeighbors == 3
+private fun Cell.isAlive(liveCells: Array<out Cell>) = liveCells.contains(this)
 
-    fun isAlive(cell: Cell): Boolean = liveCells.contains(cell)
+private fun Cell.willLive(liveCells: Array<out Cell>): Boolean {
+    val liveNeighbors = this.neighbors.filter { it.isAlive(liveCells) }.size
+    return (isAlive(liveCells) && liveNeighbors == 2) || liveNeighbors == 3
 }
 
 private val Cell.neighborhood: List<Cell>
