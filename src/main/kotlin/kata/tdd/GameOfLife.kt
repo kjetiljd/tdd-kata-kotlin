@@ -14,12 +14,16 @@ class Board(private vararg val liveCells: Cell) {
             .toTypedArray())
 }
 
-private fun Cell.isAlive(liveCells: Array<out Cell>) = liveCells.contains(this)
+private fun Cell.isAlive(liveCells: Array<out Cell>) =
+    liveCells.contains(this)
 
 private fun Cell.willLive(liveCells: Array<out Cell>): Boolean {
-    val liveNeighbors = this.neighbors.filter { it.isAlive(liveCells) }.size
+    val liveNeighbors = liveNeighbors(liveCells)
     return (isAlive(liveCells) && liveNeighbors == 2) || liveNeighbors == 3
 }
+
+private fun Cell.liveNeighbors(liveCells: Array<out Cell>) =
+    neighbors.filter { it.isAlive(liveCells) }.size
 
 private val Cell.neighborhood: List<Cell>
     get() = neighbors + this
