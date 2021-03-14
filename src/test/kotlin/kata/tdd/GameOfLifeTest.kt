@@ -1,5 +1,6 @@
 package kata.tdd
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -74,6 +75,22 @@ internal class GameOfLifeTest {
         val nextGeneration = board.nextGeneration()
 
         assertTrue(nextGeneration.isAlive(scenario.protagonist))
+    }
+
+    @Test
+    fun `Glider lives "forever"`() {
+        val glider = """
+            010
+            100
+            111
+            """
+        var board = Board(*glider.liveCells)
+
+        (0..1000).forEach {
+            assertEquals(5, board.liveCellCount)
+            board = board.nextGeneration()
+        }
+        assertEquals(5, board.liveCellCount)
     }
 }
 

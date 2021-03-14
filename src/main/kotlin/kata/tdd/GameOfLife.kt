@@ -4,6 +4,9 @@ typealias Cell = Pair<Int, Int>
 
 class Board(private vararg val liveCells: Cell) {
 
+    val liveCellCount: Int
+        get() = liveCells.size
+
     fun isAlive(cell: Cell): Boolean = cell.isAlive(liveCells)
 
     fun nextGeneration() =
