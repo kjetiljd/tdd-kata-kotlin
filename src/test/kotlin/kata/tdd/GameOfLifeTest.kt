@@ -35,10 +35,22 @@ internal class GameOfLifeTest {
 
         val nextGeneration = board.nextGeneration()
 
-        assertFalse(nextGeneration.contains(scenario.protagonist)
-        )
+        assertFalse(nextGeneration.contains(scenario.protagonist))
     }
 
+    @Test
+    fun `Any live cell with two live neighbours lives on to the next generation`() {
+        val scenario = """
+            101
+            0+0
+            000
+            """
+        val board = Board(*scenario.liveCells)
+
+        val nextGeneration = board.nextGeneration()
+
+        assertTrue(nextGeneration.contains(scenario.protagonist))
+    }
 }
 
 private val String.liveCells: Array<Pair<Int, Int>>
