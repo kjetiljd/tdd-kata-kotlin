@@ -37,6 +37,7 @@ class Board(private vararg val liveCells: Cell) {
             alive && liveNeighbors < 2 -> false
             alive && liveNeighbors == 2 -> true
             alive && liveNeighbors == 3 -> true
+            alive && liveNeighbors > 3 -> false
             else -> false
         }
 
