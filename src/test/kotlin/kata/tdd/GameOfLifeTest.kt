@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Test
 
 internal class GameOfLifeTest {
     @Test
-    fun `test some method`() {
-        assertTrue(true)
+    fun `Cell accepts coordinates`() {
+        Cell(0,0)
     }
 }
+
