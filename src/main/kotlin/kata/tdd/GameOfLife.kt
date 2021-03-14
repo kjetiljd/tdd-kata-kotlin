@@ -2,17 +2,13 @@ package kata.tdd
 
 typealias Cell = Pair<Int, Int>
 
-class Board {
-    val liveCells = mutableListOf<Cell>()
-
-    fun setAlive(coordinate: Cell) {
-        liveCells.add(coordinate)
-    }
+class Board(private vararg val liveCell: Cell) {
 
     fun liveCells(): List<Cell> {
-        return liveCells
+        return liveCell.asList()
     }
 
-    fun nextGeneration() {
+    fun nextGeneration(): Board {
+        return Board()
     }
 }
