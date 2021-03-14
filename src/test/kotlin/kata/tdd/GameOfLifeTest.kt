@@ -78,7 +78,7 @@ internal class GameOfLifeTest {
     }
 
     @Test
-    fun `Glider lives "forever"`() {
+    fun `Glider lives forever`() {
         val glider = """
             010
             100
@@ -86,7 +86,7 @@ internal class GameOfLifeTest {
             """
         var board = Board(*glider.liveCells)
 
-        (0..1000).forEach {
+        repeat(1000) {
             assertEquals(5, board.liveCellCount)
             board = board.nextGeneration()
         }
