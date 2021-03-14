@@ -28,43 +28,33 @@ internal class GameOfLifeTest {
     fun `Any live cell with fewer than two live neighbours dies`() {
         val scenario = """
             100
-            0x0
+            0+0
             000
             """
         val board = Board(*scenario.liveCells)
+
         val nextGeneration = board.nextGeneration()
 
-        assertFalse(
-            nextGeneration
-                .liveCells()
-                .contains(scenario.protagonist)
+        assertFalse(nextGeneration.contains(scenario.protagonist)
         )
     }
 
 }
 
-private val String.protagonist: Pair<Int, Int>
-    get() =
-        this.trimIndent()
-            .split("\n")
-            .mapIndexed { y, row ->
-                row.mapIndexed { x, cell ->
-                    if (cell == '1') Cell(x, y) else null
-                }
-            }
-            .flatten()
-            .filterNotNull()
-            .first()
-
 private val String.liveCells: Array<Pair<Int, Int>>
-    get() =
-        this.trimIndent()
-            .split("\n")
-            .mapIndexed { y, row ->
-                row.mapIndexed { x, cell ->
-                    if (cell == '1') Cell(x, y) else null
-                }
+    get() = filterBy('+', '1').toTypedArray()
+
+private val String.protagonist: Pair<Int, Int>
+    get() = filterBy('+', 'x').first()
+
+private fun String.filterBy(vararg chars: Char) =
+    this.trimIndent()
+        .split("\n")
+        .mapIndexed { y, row ->
+            row.mapIndexed { x, cell ->
+                if (cell in chars) Cell(x, y) else null
             }
-            .flatten()
-            .filterNotNull()
-            .toTypedArray()
+        }
+        .flatten()
+        .filterNotNull()
+
