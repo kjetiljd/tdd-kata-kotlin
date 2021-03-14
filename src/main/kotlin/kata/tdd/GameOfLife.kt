@@ -12,4 +12,7 @@ class Board {
     fun liveCells(): List<Cell> {
         return liveCells
     }
+
+    fun nextGeneration() {
+    }
 }
