@@ -7,24 +7,6 @@ import org.junit.jupiter.api.Test
 internal class GameOfLifeTest {
 
     @Test
-    fun `nextGeneration of no live cells is no live cells`() {
-        val board = Board()
-
-        val nextGeneration = board.nextGeneration()
-
-        assertTrue(nextGeneration.liveCells().isEmpty())
-    }
-
-    @Test
-    fun `board with one live cell will have no live cells nextGeneration`() {
-        val board = Board(Cell(0, 0))
-
-        val nextGeneration = board.nextGeneration()
-
-        assertTrue(nextGeneration.liveCells().isEmpty())
-    }
-
-    @Test
     fun `Any live cell with fewer than two live neighbours dies`() {
         val scenario = """
             100
@@ -35,7 +17,7 @@ internal class GameOfLifeTest {
 
         val nextGeneration = board.nextGeneration()
 
-        assertFalse(nextGeneration.contains(scenario.protagonist))
+        assertFalse(nextGeneration.isAlive(scenario.protagonist))
     }
 
     @Test
@@ -49,7 +31,7 @@ internal class GameOfLifeTest {
 
         val nextGeneration = board.nextGeneration()
 
-        assertTrue(nextGeneration.contains(scenario.protagonist))
+        assertTrue(nextGeneration.isAlive(scenario.protagonist))
     }
 
     @Test
@@ -63,7 +45,7 @@ internal class GameOfLifeTest {
 
         val nextGeneration = board.nextGeneration()
 
-        assertTrue(nextGeneration.contains(scenario.protagonist))
+        assertTrue(nextGeneration.isAlive(scenario.protagonist))
     }
 
     @Test
@@ -77,7 +59,7 @@ internal class GameOfLifeTest {
 
         val nextGeneration = board.nextGeneration()
 
-        assertFalse(nextGeneration.contains(scenario.protagonist))
+        assertFalse(nextGeneration.isAlive(scenario.protagonist))
     }
 
     @Test
@@ -91,7 +73,7 @@ internal class GameOfLifeTest {
 
         val nextGeneration = board.nextGeneration()
 
-        assertTrue(nextGeneration.contains(scenario.protagonist))
+        assertTrue(nextGeneration.isAlive(scenario.protagonist))
     }
 }
 
