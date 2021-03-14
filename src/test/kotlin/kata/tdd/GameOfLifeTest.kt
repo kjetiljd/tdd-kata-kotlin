@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 internal class GameOfLifeTest {
 
     @Test
-    fun `Board accepts live cells`() {
-        Board().accept(Cell(0,0))
+    fun `Board accepts live cell coordinate`() {
+        Board().setAlive(0,0)
     }
 }
