@@ -11,12 +11,13 @@ internal class GameOfLifeTest {
     }
 
     @Test
-    fun `Board can list live cell`() {
+    fun `Board can list live cells`() {
         val board = Board()
         board.setAlive(Pair(0,0))
+        board.setAlive(Pair(1,1))
 
         val liveCells = board.liveCells()
 
-        assertEquals(listOf(Pair(0,0)), liveCells)
+        assertEquals(listOf(Pair(0,0), Pair(1,1)), liveCells)
     }
 }
