@@ -95,12 +95,12 @@ internal class GameOfLifeTest {
 }
 
 private val String.liveCells: Board
-    get() = filterBy('+', '1')
+    get() = cellsFilteredBy('+', '1')
 
 private val String.protagonist: Cell
-    get() = filterBy('+', 'x').first()
+    get() = cellsFilteredBy('+', 'x').first()
 
-private fun String.filterBy(vararg chars: Char) =
+private fun String.cellsFilteredBy(vararg chars: Char) =
     this.trimIndent()
         .split("\n")
         .mapIndexed { y, row ->
@@ -110,4 +110,3 @@ private fun String.filterBy(vararg chars: Char) =
         }
         .flatten()
         .filterNotNull()
-
