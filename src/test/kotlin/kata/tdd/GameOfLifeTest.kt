@@ -18,7 +18,7 @@ internal class GameOfLifeTest {
 
         val nextGeneration = board.nextGeneration()
 
-        assertFalse(nextGeneration.isAlive(scenario.protagonist))
+        assertFalse(scenario.protagonist.isAlive(nextGeneration))
     }
 
     @Test
@@ -32,7 +32,7 @@ internal class GameOfLifeTest {
 
         val nextGeneration = board.nextGeneration()
 
-        assertTrue(nextGeneration.isAlive(scenario.protagonist))
+        assertTrue(scenario.protagonist.isAlive(nextGeneration))
     }
 
     @Test
@@ -46,7 +46,7 @@ internal class GameOfLifeTest {
 
         val nextGeneration = board.nextGeneration()
 
-        assertTrue(nextGeneration.isAlive(scenario.protagonist))
+        assertTrue(scenario.protagonist.isAlive(nextGeneration))
     }
 
     @Test
@@ -60,7 +60,7 @@ internal class GameOfLifeTest {
 
         val nextGeneration = board.nextGeneration()
 
-        assertFalse(nextGeneration.isAlive(scenario.protagonist))
+        assertFalse(scenario.protagonist.isAlive(nextGeneration))
     }
 
     @Test
@@ -74,7 +74,7 @@ internal class GameOfLifeTest {
 
         val nextGeneration = board.nextGeneration()
 
-        assertTrue(nextGeneration.isAlive(scenario.protagonist))
+        assertTrue(scenario.protagonist.isAlive(nextGeneration))
     }
 
     @Test
