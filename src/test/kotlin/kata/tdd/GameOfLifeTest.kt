@@ -14,7 +14,7 @@ internal class GameOfLifeTest {
             0+0
             000
             """
-        val board = scenario.liveCells
+        val board = scenario.board
 
         val nextGeneration = board.nextGeneration()
 
@@ -28,7 +28,7 @@ internal class GameOfLifeTest {
             0+0
             000
             """
-        val board = scenario.liveCells
+        val board = scenario.board
 
         val nextGeneration = board.nextGeneration()
 
@@ -42,7 +42,7 @@ internal class GameOfLifeTest {
             0+0
             010
             """
-        val board = scenario.liveCells
+        val board = scenario.board
 
         val nextGeneration = board.nextGeneration()
 
@@ -56,7 +56,7 @@ internal class GameOfLifeTest {
             0+1
             010
             """
-        val board = scenario.liveCells
+        val board = scenario.board
 
         val nextGeneration = board.nextGeneration()
 
@@ -70,7 +70,7 @@ internal class GameOfLifeTest {
             0x1
             000
             """
-        val board = scenario.liveCells
+        val board = scenario.board
 
         val nextGeneration = board.nextGeneration()
 
@@ -84,7 +84,7 @@ internal class GameOfLifeTest {
             100
             111
             """
-        var board: Board = glider.liveCells
+        var board: Board = glider.board
 
         repeat(1000) {
             assertEquals(5, board.size)

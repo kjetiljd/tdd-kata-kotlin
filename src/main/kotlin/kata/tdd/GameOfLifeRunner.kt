@@ -8,7 +8,7 @@ fun main(args: Array<String>) {
         1100000010000000
         1100000100000111
         0000000111000000
-    """.liveCells
+    """.board
 
     var minX = MAX_VALUE
     var minY = MAX_VALUE
@@ -32,7 +32,7 @@ fun main(args: Array<String>) {
     }
 }
 
-val String.liveCells: Board
+val String.board: Board
     get() = cellsFilteredBy('+', '1')
 
 fun String.cellsFilteredBy(vararg chars: Char) =
