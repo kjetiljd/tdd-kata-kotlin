@@ -93,20 +93,5 @@ internal class GameOfLifeTest {
         assertEquals(5, board.size)
     }
 }
-
-private val String.liveCells: Board
-    get() = cellsFilteredBy('+', '1')
-
 private val String.protagonist: Cell
     get() = cellsFilteredBy('+', 'x').first()
-
-private fun String.cellsFilteredBy(vararg chars: Char) =
-    this.trimIndent()
-        .split("\n")
-        .mapIndexed { y, row ->
-            row.mapIndexed { x, cell ->
-                if (cell in chars) Cell(x, y) else null
-            }
-        }
-        .flatten()
-        .filterNotNull()
