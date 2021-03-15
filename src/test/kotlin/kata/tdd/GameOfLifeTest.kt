@@ -14,7 +14,7 @@ internal class GameOfLifeTest {
             0+0
             000
             """
-        val board = Board(*scenario.liveCells)
+        val board = scenario.liveCells
 
         val nextGeneration = board.nextGeneration()
 
@@ -28,7 +28,7 @@ internal class GameOfLifeTest {
             0+0
             000
             """
-        val board = Board(*scenario.liveCells)
+        val board = scenario.liveCells
 
         val nextGeneration = board.nextGeneration()
 
@@ -42,7 +42,7 @@ internal class GameOfLifeTest {
             0+0
             010
             """
-        val board = Board(*scenario.liveCells)
+        val board = scenario.liveCells
 
         val nextGeneration = board.nextGeneration()
 
@@ -56,7 +56,7 @@ internal class GameOfLifeTest {
             0+1
             010
             """
-        val board = Board(*scenario.liveCells)
+        val board = scenario.liveCells
 
         val nextGeneration = board.nextGeneration()
 
@@ -70,7 +70,7 @@ internal class GameOfLifeTest {
             0x1
             000
             """
-        val board = Board(*scenario.liveCells)
+        val board = scenario.liveCells
 
         val nextGeneration = board.nextGeneration()
 
@@ -84,20 +84,20 @@ internal class GameOfLifeTest {
             100
             111
             """
-        var board = Board(*glider.liveCells)
+        var board: Board = glider.liveCells
 
         repeat(1000) {
-            assertEquals(5, board.liveCellCount)
+            assertEquals(5, board.size)
             board = board.nextGeneration()
         }
-        assertEquals(5, board.liveCellCount)
+        assertEquals(5, board.size)
     }
 }
 
-private val String.liveCells: Array<Pair<Int, Int>>
-    get() = filterBy('+', '1').toTypedArray()
+private val String.liveCells: Board
+    get() = filterBy('+', '1')
 
-private val String.protagonist: Pair<Int, Int>
+private val String.protagonist: Cell
     get() = filterBy('+', 'x').first()
 
 private fun String.filterBy(vararg chars: Char) =

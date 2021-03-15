@@ -2,30 +2,24 @@ package kata.tdd
 
 typealias Cell = Pair<Int, Int>
 
-class Board(private vararg val liveCells: Cell) {
+typealias Board = List<Cell>
 
-    val liveCellCount: Int
-        get() = liveCells.size
+fun Board.isAlive(cell: Cell): Boolean = cell.isAlive(this)
 
-    fun isAlive(cell: Cell): Boolean = cell.isAlive(liveCells)
+fun Board.nextGeneration() =
+    this
+        .flatMap { it.neighborhood }
+        .distinct()
+        .filter { it.willLive(this) }
 
-    fun nextGeneration() =
-        Board(*liveCells
-            .flatMap { it.neighborhood }
-            .distinct()
-            .filter { it.willLive(liveCells) }
-            .toTypedArray())
-}
+private fun Cell.isAlive(board: Board) = board.contains(this)
 
-private fun Cell.isAlive(liveCells: Array<out Cell>) =
-    liveCells.contains(this)
-
-private fun Cell.willLive(liveCells: Array<out Cell>): Boolean {
+private fun Cell.willLive(liveCells: Board): Boolean {
     val liveNeighbors = liveNeighbors(liveCells)
     return (isAlive(liveCells) && liveNeighbors == 2) || liveNeighbors == 3
 }
 
-private fun Cell.liveNeighbors(liveCells: Array<out Cell>) =
+private fun Cell.liveNeighbors(liveCells: Board) =
     neighbors.filter { it.isAlive(liveCells) }.size
 
 private val Cell.neighborhood: List<Cell>
