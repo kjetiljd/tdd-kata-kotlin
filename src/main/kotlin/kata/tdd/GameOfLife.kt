@@ -21,13 +21,10 @@ private val Cell.neighborhood: List<Cell>
     get() = neighbors + this
 
 private val Cell.neighbors: List<Cell>
-    get() = listOf(
-        Cell(first - 1, second - 1),
-        Cell(first    , second - 1),
-        Cell(first + 1, second - 1),
-        Cell(first - 1, second),
-        Cell(first + 1, second),
-        Cell(first - 1, second + 1),
-        Cell(first    , second + 1),
-        Cell(first + 1, second + 1),
-    )
+    get() =
+        (-1..1)
+            .map { x -> (-1..1).map{ y -> Pair(x,y) } }
+            .flatten()
+            .filter { !(it.first == 0 && it.second == 0) }
+            .map { delta -> Cell(first + delta.first, second + delta.second) }
+
