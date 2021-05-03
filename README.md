@@ -5,7 +5,7 @@
 ### Clone and make sure you can build
 
 ```sh
-git clone git@github.com:akafred/tdd-kata-kotlin.git # or git pull if already cloned
+git clone git@github.com:kjetiljd/tdd-kata-kotlin.git # or git pull if already cloned
 cd tdd-kata-kotlin
 ```
 And then:
